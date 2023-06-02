@@ -9,31 +9,51 @@ import { BasePlugin, BaseComponent } from 'vatom-spaces-plugins'
  * @license MIT
  * @author Vatom Inc.
  */
-export default class MyPlugin extends BasePlugin {
+export default class CreateObjPlugin extends BasePlugin {
+  // Plugin info
+  static get id()             { return 'createobj-plugin' };
+  static get name()           { return 'CreateObjPlugin' };
+  static get description()    { return 'A button creates an object in the space.' };
 
-    /** Plugin info */
-    static id = "vatom-template-plugin"
-    static name = "Vatom Template Plugin"
-    static description = "Description of the plugin goes here."
 
-    /** Called on load */
-    onLoad() {
+	onLoad() {
+		// Create a button in the toolbar
+		this.menus.register({
+			icon: this.paths.absolute('button-icon.png'),
+			text: 'Plugin',
+			action: () => this.onButtonPress()
+		})
+	}// onLoad()
 
-        // Create a button in the toolbar
-        this.menus.register({
-            icon: this.paths.absolute('button-icon.png'),
-            text: 'Plugin',
-            action: () => this.onButtonPress()
-        })
 
-    }
+	async onButtonPress() {
+		console.log(`onButtonPress`);
+		//
+		const objId = await this.objects.create({ type: 'plane', scale_x: 16 / 9 });
+		
+		/*---*
+		const objId = await this.objects.create({
+			type: 'cylinder',
+			scale_x: 1.0, scale_y: 1.0, scale_z: 1.0,
+			disabled: false
+		});
+		*---*
+		const userId = await this.user.getID();
+		const objId = await this.objects.createStatusItem({
+			userID: userId,
+			size: 0.2
+		},{
+			type: 'text',
+			text: 'Hello',
+			textBold: true
+		});
+		*---*/
+		//
+		console.log(`created obj: ${objId}`);
+	}// onButtonPress()
 
-    /** Called when the user presses the action button */
-    onButtonPress() {
 
-        // Show alert
-        this.menus.alert(`Hello from ${this.constructor.name} version ${require('../package.json').version}!`, 'Hello world!', 'info')
+}// class CreateObjPlugin
 
-    }
 
-}
+// EOF
