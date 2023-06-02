@@ -1,0 +1,15 @@
+{
+  "id": "create-object",
+  "name": "Create Object",
+  "version": "0.0.1",
+  "beta": true,
+  "personalPlugin": true,
+  "description": "Create a scene object in a space from plugin code.",
+  "longDescription": "Create a scene object in a space from plugin code.",
+  "configuration": "TBD",
+  "category": "3d Objects",
+  "businessId": "3UewHF0ge9",
+  "price": 0,
+  "releaseNotes": "TBD",
+  "entrypoint": ""
+}
