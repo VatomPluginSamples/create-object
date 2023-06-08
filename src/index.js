@@ -29,15 +29,20 @@ export default class CreateObjPlugin extends BasePlugin {
 	async onButtonPress() {
 		console.log(`onButtonPress`);
 		//
-		const objId = await this.objects.create({ type: 'plane', scale_x: 16 / 9 });
+		/*---*/
+		const objId = await this.objects.create({
+			type: 'plane',
+			scale_x: 16 / 9,
+			clientOnly: false
+		});
 		
-		/*---*
+		/*---* /
 		const objId = await this.objects.create({
 			type: 'cylinder',
 			scale_x: 1.0, scale_y: 1.0, scale_z: 1.0,
 			disabled: false
 		});
-		*---*
+		/*---* /
 		const userId = await this.user.getID();
 		const objId = await this.objects.createStatusItem({
 			userID: userId,
@@ -47,7 +52,9 @@ export default class CreateObjPlugin extends BasePlugin {
 			text: 'Hello',
 			textBold: true
 		});
-		*---*/
+		/*---* /
+		const objId = await this.objects.create({ type: 'plane', scale_x: 16 / 9 });
+		/*---*/
 		//
 		console.log(`created obj: ${objId}`);
 	}// onButtonPress()
